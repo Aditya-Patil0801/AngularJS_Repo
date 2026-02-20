@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>AngularJS Routing Example</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+
+<body>
+
+<h2>AngularJS Routing Demo</h2>
+
+<a href="#!/">Home</a> |
+<a href="#!/about">About</a>
+
+<div ng-view></div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        template: `
+            <h3>Home Page</h3>
+            <ul>
+                <li ng-repeat="item in items" ng-style="{'color': item.color}">
+                    {{item.name}}
+                </li>
+            </ul>
+        `,
+        controller: "homeCtrl"
+    })
+    .when("/about", {
+        template: "<h3>About Page</h3><p>This is routing example.</p>"
+    })
+    .otherwise({
+        redirectTo: "/"
+    });
+});
+
+app.controller("homeCtrl", function($scope){
+    $scope.items = [
+        {name:'AngularJS', color:'red'},
+        {name:'Routing', color:'green'},
+        {name:'Directives', color:'blue'}
+    ];
+});
+</script>
+
+</body>
+</html>
