@@ -1,0 +1,22 @@
+<!-- Data Binding Example -->
+
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+Enter your Name:
+<input type="text" ng-model="username">
+
+<h2>Hello {{username}}</h2>
+
+</body>
+</html>
+
+<!-- Explanation:
+
+ng-model binds input value to variable.
+{{ }} displays updated value.
+Changes reflect automatically (no refresh required). -->
