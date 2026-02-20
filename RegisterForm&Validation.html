@@ -1,0 +1,83 @@
+<!-- Designed A registration form and performed validation of fields -->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+
+<h2>Registration Form</h2>
+
+<form name="regForm" ng-controller="validateCtrl" novalidate>
+
+<!-- Username -->
+<p>Username:<br>
+<input type="text" name="user" ng-model="user" required>
+
+<span style="color:red"
+ng-show="regForm.user.$dirty && regForm.user.$invalid">
+
+<span ng-show="regForm.user.$error.required">
+Username is required.
+</span>
+
+</span>
+</p>
+
+<!-- Email -->
+<p>Email:<br>
+<input type="email" name="email" ng-model="email" required>
+
+<span style="color:red"
+ng-show="regForm.email.$dirty && regForm.email.$invalid">
+
+<span ng-show="regForm.email.$error.required">
+Email is required.
+</span>
+
+<span ng-show="regForm.email.$error.email">
+Invalid email address.
+</span>
+
+</span>
+</p>
+
+<!-- Password -->
+<p>Password:<br>
+<input type="password" name="password" ng-model="password" required minlength="6">
+
+<span style="color:red"
+ng-show="regForm.password.$dirty && regForm.password.$invalid">
+
+<span ng-show="regForm.password.$error.required">
+Password is required.
+</span>
+
+<span ng-show="regForm.password.$error.minlength">
+Minimum 6 characters required.
+</span>
+
+</span>
+</p>
+
+<!-- Submit Button -->
+<p>
+<input type="submit"
+ng-disabled="regForm.$invalid">
+</p>
+
+</form>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+$scope.user = "";
+$scope.email = "";
+$scope.password = "";
+});
+</script>
+
+</body>
+</html>
