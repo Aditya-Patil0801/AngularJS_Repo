@@ -1,0 +1,60 @@
+<!-- AngularJS Dependency Injection Demo -->
+
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+    <title>AngularJS Dependency Injection Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+
+<h2>AngularJS Dependency Injection Example</h2>
+
+<div ng-controller="CalcController">
+    <p>Enter a number:
+        <input type="number" ng-model="number">
+    </p>
+
+    <button ng-click="square()">X²</button>
+
+    <p>Result: {{result}}</p>
+</div>
+
+<script>
+var mainApp = angular.module("mainApp", []);
+
+// Value
+mainApp.value("defaultInput", 5);
+
+// Factory
+mainApp.factory('MathService', function() {
+    var factory = {};
+    factory.multiply = function(a, b) {
+        return a * b;
+    }
+    return factory;
+});
+
+// Service
+mainApp.service('CalcService', function(MathService) {
+    this.square = function(a) {
+        return MathService.multiply(a, a);
+    }
+});
+
+// Controller
+mainApp.controller('CalcController', function($scope, CalcService, defaultInput) {
+
+    $scope.number = defaultInput;
+    $scope.result = CalcService.square($scope.number);
+
+    $scope.square = function() {
+        $scope.result = CalcService.square($scope.number);
+    }
+
+});
+</script>
+
+</body>
+</html>
