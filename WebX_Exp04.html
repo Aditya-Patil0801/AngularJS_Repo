@@ -1,0 +1,37 @@
+<!-- Create simple "Hello World" project using AngularJS framework & apply in built directories & expressions -->   
+ <!DOCTYPE html>
+<html ng-app="">
+<head>
+    <title>AngularJS Hello World - Exp04</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-init="college='Vidyavardhinis College of Engineering and Technology Vasai';
+               students=['Amogh','Vishwanath','Kuldeep','Vinayak','Siddhesh','Kowshik','Varun','Neal','Tanmay']">
+
+    <h1>AngularJS Hello World Example</h1>
+
+    <!-- Two-way Data Binding Example -->
+    <label>Enter Your Name:</label>
+    <input type="text" ng-model="name">
+
+    <h2>Hello {{name}}!</h2>
+
+    <hr>
+
+    <!-- ng-bind Example -->
+    <h3>College Name (Using ng-bind):</h3>
+    <p ng-bind="college"></p>
+
+    <hr>
+
+    <!-- ng-repeat Example -->
+    <h3>Student List (Using ng-repeat):</h3>
+    <ul>
+        <li ng-repeat="s in students">
+            {{s}}
+        </li>
+    </ul>
+
+</body>
+</html>
